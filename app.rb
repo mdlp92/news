@@ -1,6 +1,7 @@
 require "sinatra"
 require "sinatra/reloader"
 require "httparty"
+require 'open-uri'
 def view(template); erb template.to_sym; end
 
 get "/" do
@@ -30,8 +31,22 @@ view "news"
   ### Get the news
 end
 
-key1 = "bb1e42b83f094c579178d96b912385c6"
+## beginning to now get the news
 
-url = "https://newsapi.org/v2/top-headlines?country=id&apiKey=#{key1}"
-news = HTTParty.get(url).parsed_response.to_hash
+get "/" do
+key2 = "bb1e42b83f094c579178d96b912385c6"
+req = open(url2)
+response_body = req.read
+
+
+url2 = "https://newsapi.org/v2/top-headlines?country=id&apiKey=#{key2}"
+news = HTTParty.get(url2).parsed_response.to_hash
+
+puts "Today's top stories are #{news["articles"]["source"]["name"]}"
+puts news["articles"]["description"]
+puts news["articles"]["url"]
+puts response_body
+
+end
+
 # news is now a Hash you can pretty print (pp) and parse for your output
