@@ -32,8 +32,10 @@
   
     <div class="row m-4">
      <div class="col m-4">
-     <img src="http://www.consorcigavarres.org/bali/">
-     <h2> Your Kuta weather forecast </h2>
+     <div class="row">
+      <h2> Your Kuta weather forecast </h2>
+     <img src="./bali.jpg" alt="Bali Pic" width="700" height="333">
+     </div>
         <%# Remove the hard-coding and have this come from a "deck" of cards %>
         <%= "It is currently #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["description"]}" %>
             <%= "The extended forecast:" %>
