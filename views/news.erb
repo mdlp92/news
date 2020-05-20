@@ -47,13 +47,14 @@
     </div>  
         <div class="col m-4">  
         <h2> Top Kuta news stories </h2>
-            
+            <% story_number = 1 %>
             <% for articles in @news1["articles"] %>
-                <%= "#{articles["title"]}" %>
+                <%= "Story #{story_number}: #{articles["title"]}" %>
                 <%= "by #{articles["author"]}" %>
                 <%= "you can read more here: #{articles["url"]}" %>
                 <li
                 </li>
+            <% story_number = story_number + 1 %>
          <% end %>
             
         </div>  
