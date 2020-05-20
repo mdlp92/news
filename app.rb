@@ -19,15 +19,16 @@ get "/" do
   # make the call
   @forecast = HTTParty.get(url0).parsed_response.to_hash
 
-current_forecast = puts "It is currently #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["description"]}"
-extended_label = puts "Extended forecast:"
+puts "It is currently #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["description"]}"
+puts "Extended forecast:"
 day_number = 1
 for day in @forecast["daily"]
-   puts "On day #{day_number}, A high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}"
+    if day_number == 1
+        puts "Today will have a high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}"
+    elsif day_number>1
+   puts "On day #{day_number}: A high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}"
    day_number = day_number + 1
 
-   extended_forecast = "On day #{day_number}, A high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}"
-   day_number = day_number + 1
 
 end
   ### Get the news
@@ -37,15 +38,17 @@ key2 = "bb1e42b83f094c579178d96b912385c6"
 
 #"https://newsapi.org/v2/top-headlines?country=id&apiKey=bb1e42b83f094c579178d96b912385c6"
 url2 = "https://newsapi.org/v2/top-headlines?country=id&apiKey=#{key2}"
-news1 = HTTParty.get(url2).parsed_response.to_hash
+@news1 = HTTParty.get(url2).parsed_response.to_hash
 
-# for articles in news1["articles"]
-#     puts "today's news is #{articles["title"]}"
-#     puts "by #{articles["author"]}"
-#     puts "you can read more here: #{articles["url"]}"
+for articles in @news1["articles"]
+    puts "today's news is #{articles["title"]}"
+    puts "by #{articles["author"]}"
+    puts "you can read more here: #{articles["url"]}"
 
-view "news"
-
-# end
 end
+end
+view "news"
+end
+
+
 # news is now a Hash you can pretty print (pp) and parse for your output

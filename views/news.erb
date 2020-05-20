@@ -22,25 +22,41 @@
   </head>
   <body>
 
-    <div class="container mt-5">
-      <h1>Updates from Kuta</h1>
-        <h2> Hot weather. Fire stories </h2>
+    <div class="text-center text-light bg-dark mb-3">
+      <h1>Updates from Kuta, Bali</h1>
+        <h2>Hot weather. Fire stories </h2>
+        <p>
+        <a href="/" class="btn btn-success">Refresh</a>
+      </p>
     </div>
   
-
-     <div class="row m-4">
+    <div class="row m-4">
+     <div class="col m-4">
+     <img src="http://www.consorcigavarres.org/bali/">
+     <h2> Your Kuta weather forecast </h2>
         <%# Remove the hard-coding and have this come from a "deck" of cards %>
         <%= "It is currently #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["description"]}" %>
             <%= "The extended forecast:" %>
             <% day_number = 1 %>
            <% for day in @forecast["daily"] %>
                  <%= "On day #{day_number}, A high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}" %>
-                 <% day_number = day_number + 1 %>
-        <% end %>
-      </div>
-
-      <%# Add a "deal again" button %>
-
+            <li
+            <% day_number = day_number + 1 %>
+            </li>
+            <% end %>
+    </div>  
+        <div class="col m-4">  
+        <h2> Top Kuta news stories </h2>
+            
+            <% for articles in @news1["articles"] %>
+                <%= "#{articles["title"]}" %>
+                <%= "by #{articles["author"]}" %>
+                <%= "you can read more here: #{articles["url"]}" %>
+                <li
+                </li>
+         <% end %>
+            
+        </div>  
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
