@@ -19,12 +19,16 @@ get "/" do
   # make the call
   @forecast = HTTParty.get(url0).parsed_response.to_hash
 
-puts "It is currently #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["description"]}"
-puts "Extended forecast:"
+current_forecast = puts "It is currently #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["description"]}"
+extended_label = puts "Extended forecast:"
 day_number = 1
 for day in @forecast["daily"]
    puts "On day #{day_number}, A high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}"
    day_number = day_number + 1
+
+   extended_forecast = "On day #{day_number}, A high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}"
+   day_number = day_number + 1
+
 end
   ### Get the news
 
@@ -35,19 +39,13 @@ key2 = "bb1e42b83f094c579178d96b912385c6"
 url2 = "https://newsapi.org/v2/top-headlines?country=id&apiKey=#{key2}"
 news1 = HTTParty.get(url2).parsed_response.to_hash
 
-for articles in news1["articles"]
-    puts " today's news is #{articles["title"]}"
-    puts "by #{articles["author"]}"
-    puts "you can read more here: #{articles["url"]}"
-
-# puts  news1["articles"][0]["url"]
-# puts  news1["articles"][1]["url"]
-# puts  news1["articles"][3]["url"]
-# puts news["articles"]["description"]
-# puts news["articles"]["url"]
+# for articles in news1["articles"]
+#     puts "today's news is #{articles["title"]}"
+#     puts "by #{articles["author"]}"
+#     puts "you can read more here: #{articles["url"]}"
 
 view "news"
 
-end
+# end
 end
 # news is now a Hash you can pretty print (pp) and parse for your output

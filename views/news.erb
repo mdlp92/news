@@ -24,8 +24,23 @@
 
     <div class="container mt-5">
       <h1>Updates from Kuta</h1>
+        <h2> Hot weather. Fire stories </h2>
     </div>
-    <h2> Hot weather. Fire stories </h2>
+  
+
+     <div class="row m-4">
+        <%# Remove the hard-coding and have this come from a "deck" of cards %>
+        <%= "It is currently #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["description"]}" %>
+            <%= "The extended forecast:" %>
+            <% day_number = 1 %>
+           <% for day in @forecast["daily"] %>
+                 <%= "On day #{day_number}, A high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}" %>
+                 <% day_number = day_number + 1 %>
+        <% end %>
+      </div>
+
+      <%# Add a "deal again" button %>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
